@@ -1,5 +1,6 @@
 import 'user.dart';
 import 'entities.dart';
+import 'place.dart';
 import 'package:lemonade/util/date_format.dart';
 
 class Tweet {
@@ -11,6 +12,7 @@ class Tweet {
   final int inReplyToUserId;
   final String inReplyToScreenName;
   final User user;
+  final Place place;
   final int quotedStatusId;
   final bool isQuotedStatus;
   final Tweet quotedStatus;
@@ -37,6 +39,7 @@ class Tweet {
       this.inReplyToUserId,
       this.inReplyToScreenName,
       this.user,
+      this.place,
       this.quotedStatusId,
       this.isQuotedStatus,
       this.quotedStatus,
@@ -57,6 +60,10 @@ class Tweet {
   factory Tweet.fromJson(Map<String, dynamic> json) {
     var user = json['user'] != null
         ? User.fromJson(json['user'])
+        : null;
+
+    var place = json['place'] != null
+        ? Place.fromJson(json['place'])
         : null;
 
     var quotedStatus = json['quoted_status'] != null
@@ -86,6 +93,7 @@ class Tweet {
         json['in_reply_to_user_id'] as int,
         json['in_reply_to_screen_name'] as String,
         user,
+        place,
         json['quoted_status_id'] as int,
         json['is_quote_status'] as bool,
         quotedStatus,
