@@ -9,7 +9,10 @@ class ResourceUrl {
   factory ResourceUrl.fromJson(Map<String, dynamic> json) {
     var indices = (json['indices'] as List).map((e) => e as int).toList();
 
-    return ResourceUrl(indices, json['url'] as String,
-        json['display_url'] as String, json['expanded_url'] as String);
+    return ResourceUrl(
+        indices,
+        json['url'] as String,
+        json['display_url'] as String,
+        json['expanded_url'] as String);
   }
 }

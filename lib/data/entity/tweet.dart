@@ -55,7 +55,9 @@ class Tweet {
       this.lang);
 
   factory Tweet.fromJson(Map<String, dynamic> json) {
-    var user = json['user'] != null ? User.fromJson(json['user']) : null;
+    var user = json['user'] != null
+        ? User.fromJson(json['user'])
+        : null;
 
     var quotedStatus = json['quoted_status'] != null
         ? Tweet.fromJson(json['quoted_status'])
@@ -65,8 +67,9 @@ class Tweet {
         ? Tweet.fromJson(json['retweeted_status'])
         : null;
 
-    var entities =
-        json['entities'] != null ? Entities.fromJson(json['entities']) : null;
+    var entities = json['entities'] != null
+        ? Entities.fromJson(json['entities'])
+        : null;
 
     var extendedEntities = json['extended_entities'] != null
         ? Entities.fromJson(json['extended_entities'])

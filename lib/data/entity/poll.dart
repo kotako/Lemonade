@@ -8,8 +8,7 @@ class Poll {
   Poll(this.options, this.endDateTime, this.durationMinutes);
 
   factory Poll.fromJson(Map<String, dynamic> json) {
-    var options =
-        (json['options'] as List).map((e) => PollOption.fromJson(e)).toList();
+    var options = (json['options'] as List).map((e) => PollOption.fromJson(e)).toList();
     var endDateTime = parseTwitterDateFormat(json['end_datetime']);
 
     return Poll(options, endDateTime, json['duration_minutes'] as int);
