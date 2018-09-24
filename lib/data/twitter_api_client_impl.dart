@@ -5,6 +5,7 @@ import 'package:oauth1/oauth1.dart' as oauth1;
 
 import 'twitter_api_client.dart';
 import 'entity/session.dart';
+import 'entity/twitter_error.dart';
 
 class TwitterApiClientImpl extends oauth1.Client implements TwitterApiClient{
   final String baseUrl = 'api.twitter.com';
@@ -20,16 +21,26 @@ class TwitterApiClientImpl extends oauth1.Client implements TwitterApiClient{
   Future<dynamic> getWithOAuth({String endpoint, Map params}) async {
     var url = _buildUrl(endpoint, params);
     var response = await get(url);
+    var json = jsonDecode(response.body);
 
-    return jsonDecode(response.body);
+    if (response.statusCode >= 400) {
+      var errors = (json as Map<String, dynamic>)['errors'] as List;
+      throw TwitterError.fromJson(errors.first);
+    }
+    return json;
   }
 
   @override
   Future<dynamic> postWithOAuth({String endpoint, Map params, Map body}) async {
     var url = _buildUrl(endpoint, params);
     var response = await post(url, body: body);
+    var json = jsonDecode(response.body);
 
-    return jsonDecode(response.body);
+    if (response.statusCode >= 400) {
+      var errors = (json as Map<String, dynamic>)['errors'] as List;
+      throw TwitterError.fromJson(errors.first);
+    }
+    return json;
   }
 
   String _buildUrl(String endpoint, [Map params]) {

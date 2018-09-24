@@ -10,3 +10,5 @@ build/
 *.iml
 
 .flutter-plugins
+
+mock_credential.json
