@@ -1,16 +1,13 @@
 import 'package:test/test.dart';
-import 'dart:convert';
-import 'dart:io';
 
 import 'package:lemonade/data/twitter_api_client.dart';
 import 'package:lemonade/data/twitter_api_client_impl.dart';
 import 'package:lemonade/data/entity/session.dart';
 import 'package:lemonade/data/entity/twitter_error.dart';
 
-final String credentialPath = '${Directory.current.path}/test/data/mock_credential.json';
+import '../test_config.dart';
 
 main() {
-  var credential = jsonDecode(File(credentialPath).readAsStringSync()) as Map<String, dynamic>;
   Session session;
   TwitterApiClient client;
 
