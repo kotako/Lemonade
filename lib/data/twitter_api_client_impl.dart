@@ -20,10 +20,10 @@ class TwitterApiClientImpl extends oauth1.Client implements TwitterApiClient{
           oauth1.Credentials(currentSession.accessToken, currentSession.accessSecret));
 
   @override
-  Future<dynamic> getWithOAuth({String endpoint, Map params}) async {
+  Future<dynamic> getWithOAuth({String baseUrl = apiBaseUrl, String endpoint, Map params}) async {
     params?.removeWhere((k, v) => v == null);
     
-    var url = _buildUrl(endpoint, params: params);
+    var url = _buildUrl(endpoint, baseUrl: baseUrl, params: params);
     var response = await get(url);
     var json = jsonDecode(response.body);
 
@@ -35,11 +35,11 @@ class TwitterApiClientImpl extends oauth1.Client implements TwitterApiClient{
   }
 
   @override
-  Future<dynamic> postWithOAuth({String endpoint, Map params, Map body}) async {
+  Future<dynamic> postWithOAuth({String baseUrl = apiBaseUrl, String endpoint, Map params, Map body}) async {
     params?.removeWhere((k, v) => v == null);
     body?.removeWhere((k, v) => v == null);
     
-    var url = _buildUrl(endpoint, params: params);
+    var url = _buildUrl(endpoint, baseUrl: baseUrl, params: params);
     var response = await post(url, body: body);
     var json = jsonDecode(response.body);
 
@@ -51,11 +51,11 @@ class TwitterApiClientImpl extends oauth1.Client implements TwitterApiClient{
   }
 
   @override
-  Future<dynamic> postMultipartWithOAuth({String endpoint, Map params, Map files}) async {
+  Future<dynamic> postMultipartWithOAuth({String baseUrl = apiBaseUrl, String endpoint, Map params, Map files}) async {
     params?.removeWhere((k, v) => v == null);
     files?.removeWhere((k, v) => v == null);
     
-    var url = _buildUrl(endpoint, baseUrl: uploadBaseUrl, params: params);
+    var url = _buildUrl(endpoint, baseUrl: baseUrl, params: params);
     var request = http.MultipartRequest('POST', Uri.parse(url));
     files?.forEach((k, v) => request.files.add(http.MultipartFile.fromString(k, v)));
 

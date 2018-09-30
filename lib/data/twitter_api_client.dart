@@ -9,9 +9,9 @@ abstract class TwitterApiClient {
 
   TwitterApiClient(this.currentSession);
 
-  Future<dynamic> getWithOAuth({String endpoint, Map params});
+  Future<dynamic> getWithOAuth({String baseUrl, String endpoint, Map params});
 
-  Future<dynamic> postWithOAuth({String endpoint, Map params, Map body});
+  Future<dynamic> postWithOAuth({String baseUrl, String endpoint, Map params, Map body});
 
-  Future<dynamic> postMultipartWithOAuth({String endpoint, Map params, Map files});
+  Future<dynamic> postMultipartWithOAuth({String baseUrl, String endpoint, Map params, Map files});
 }
