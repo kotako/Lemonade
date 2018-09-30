@@ -22,6 +22,6 @@ main() {
     var media = mockImage;
     var mediaEncoded = base64Encode(media.readAsBytesSync());
     var response = await service.upload(mediaEncoded: mediaEncoded);
-    expect(response, isNotEmpty);
+    expect(response, isNotNull);
   });
 }

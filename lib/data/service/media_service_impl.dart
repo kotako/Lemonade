@@ -14,7 +14,7 @@ class MediaServiceImpl extends MediaService {
     var body = {
       'media_data': mediaEncoded
     };
-    var json = await client.postWithOAuth(endpoint: '/media/upload.json', body: body);
+    var json = await client.postMultipartWithOAuth(endpoint: '/media/upload.json', files: body);
     return Media.fromJson(json);
   }
 }

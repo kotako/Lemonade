@@ -15,15 +15,15 @@ class Media {
       this.mediaUrl, this.sizes, this.sourceStatusId, this.url);
 
   factory Media.fromJson(Map<String, dynamic> json) {
-    var indices = (json['indices'] as List).map((e) => e as int).toList();
+    var indices = (json['indices'] as List)?.map((e) => e as int)?.toList();
 
     var mediaType;
-    if (json['type'] == 'photo') {
-      mediaType = MediaType.photo;
+    if (json['type'] == 'animated_gif') {
+      mediaType = MediaType.animated_gif;
     } else if (json['type'] == 'video') {
       mediaType = MediaType.video;
     } else {
-      mediaType = MediaType.animated_gif;
+      mediaType = MediaType.photo;
     }
 
     return Media(
