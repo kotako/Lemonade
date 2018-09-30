@@ -19,7 +19,7 @@ class TwitterApiClientImpl extends oauth1.Client implements TwitterApiClient{
 
   @override
   Future<dynamic> getWithOAuth({String endpoint, Map params}) async {
-    params.removeWhere((k, v) => v == null);
+    params?.removeWhere((k, v) => v == null);
     var url = _buildUrl(endpoint, params);
     var response = await get(url);
     var json = jsonDecode(response.body);
@@ -33,8 +33,8 @@ class TwitterApiClientImpl extends oauth1.Client implements TwitterApiClient{
 
   @override
   Future<dynamic> postWithOAuth({String endpoint, Map params, Map body}) async {
-    params.removeWhere((k, v) => v == null);
-    body.removeWhere((k, v) => v == null);
+    params?.removeWhere((k, v) => v == null);
+    body?.removeWhere((k, v) => v == null);
     var url = _buildUrl(endpoint, params);
     var response = await post(url, body: body);
     var json = jsonDecode(response.body);
