@@ -12,7 +12,7 @@ main() {
   TwitterCore twitter;
 
   setUp(() {
-    session = Session(credential['consumerKey'], credential['consumerSecret'], credential['accessToken'], credential['accessSecret']);
+    session = Session(credential['id'], credential['name'], credential['consumerKey'], credential['consumerSecret'], credential['accessToken'], credential['accessSecret']);
     twitter = TwitterCoreImpl(TwitterApiClientImpl(session));
   });
 

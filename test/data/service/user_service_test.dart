@@ -13,7 +13,7 @@ main() {
   UserService service;
 
   setUp(() {
-    client = TwitterApiClientImpl(Session(credential['consumerKey'], credential['consumerSecret'], credential['accessToken'], credential['accessSecret']));
+    client = TwitterApiClientImpl(Session(credential['id'], credential['name'], credential['consumerKey'], credential['consumerSecret'], credential['accessToken'], credential['accessSecret']));
     service = UserServiceImpl(client);
   });
 

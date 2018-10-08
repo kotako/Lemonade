@@ -35,7 +35,13 @@ class TwitterCoreImpl extends TwitterCore {
     var session;
     switch (result.status) {
       case TwitterLoginStatus.loggedIn:
-        session = Session(consumerKey, consumerSecret, result.session.token, result.session.secret);
+        session = Session(
+            int.parse(result.session.userId),
+            result.session.username,
+            consumerKey,
+            consumerSecret,
+            result.session.token,
+            result.session.secret);
         break;
       case TwitterLoginStatus.cancelledByUser:
         throw TwitterAuthError('Auth cancelled by user.');

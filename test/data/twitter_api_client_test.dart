@@ -13,7 +13,7 @@ main() {
 
   group('valid session', () {
     setUp(() {
-      session = Session(credential['consumerKey'], credential['consumerSecret'], credential['accessToken'], credential['accessSecret']);
+      session = Session(credential['id'], credential['name'], credential['consumerKey'], credential['consumerSecret'], credential['accessToken'], credential['accessSecret']);
       client = TwitterApiClientImpl(session);
     });
 
@@ -33,7 +33,7 @@ main() {
 
   group('invalid session', () {
     setUp(() {
-      session = Session('', '', '', '');
+      session = Session(0, '', '', '', '', '');
       client = TwitterApiClientImpl(session);
     });
 
